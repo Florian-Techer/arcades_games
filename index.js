@@ -31,3 +31,16 @@ function drawSnake() {
     board.appendChild(snakeElement);
   });
 }
+
+//create a snake or food cube/div
+function createGameElement(tag, className) {
+  const element = document.createElement(tag);
+  element.className = className;
+  return element;
+}
+
+//set position of the snake or food
+function setPosition(element, position) {
+  element.style.gridColumn = position.x;
+  element.style.gridRow = position.y;
+}
