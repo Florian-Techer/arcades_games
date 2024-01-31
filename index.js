@@ -12,7 +12,7 @@ let food = generateFood();
 let hightScore = 0;
 let direction = "right";
 let gameInterval;
-let gameSpeedDelay = 500;
+let gameSpeedDelay = 300;
 let gameStarted = false;
 
 //draw game map, snake, food
@@ -156,11 +156,11 @@ function checkCollision() {
 }
 
 function resetGame() {
+  updateHightScore();
   snake = [{ x: 10, y: 10 }];
   food = generateFood();
   direction = "right";
   gameSpeedDelay = 500;
-  updateHightScore();
   stopGame();
 }
 
