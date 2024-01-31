@@ -94,3 +94,40 @@ function snakeMove() {
     snake.pop();
   }
 }
+
+//start game function
+function startGame() {
+  gameStarted = true;
+  instructionText.style.display = "none";
+  logo.style.display = "none";
+  gameInterval = setInterval(() => {
+    snakeMove();
+    checkCollision();
+    draw();
+  }, gameSpeedDelay);
+}
+
+//keypress listener
+function handleKeyPress(event) {
+  if (
+    (!gameStarted && event.code === "Space") ||
+    (!gameStarted && event.key === " ")
+  ) {
+    startGame();
+  } else {
+    switch (event.key) {
+      case "ArrowUp":
+        direction = "up";
+        break;
+      case "ArrowRight":
+        direction = "right";
+        break;
+      case "ArrowDown":
+        direction = "down";
+        break;
+      case "ArrowLeft":
+        direction = "left";
+        break;
+    }
+  }
+}
