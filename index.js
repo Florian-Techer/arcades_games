@@ -154,3 +154,35 @@ function checkCollision() {
     }
   }
 }
+
+function resetGame() {
+  snake = [{ x: 10, y: 10 }];
+  food = generateFood();
+  direction = "right";
+  gameSpeedDelay = 500;
+  updateHightScore();
+  stopGame();
+}
+
+function updateScore() {
+  const currentScore = snake.length - 1;
+  score.textContent = currentScore.toString().padStart(3, "0");
+}
+
+function updateHightScore() {
+  const currentScore = snake.length - 1;
+  if (currentScore > hightScore) {
+    hightScore = currentScore;
+    hightScoreText.textContent = hightScore.toString().padStart(3, "0");
+  }
+  hightScoreText.style.display = "block";
+}
+
+function stopGame() {
+  clearInterval(gameInterval);
+  gameStarted = false;
+  instructionText.style.display = "block";
+  logo.style.display = "block";
+}
+
+document.addEventListener("keydown", handleKeyPress);
