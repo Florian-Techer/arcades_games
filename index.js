@@ -60,3 +60,37 @@ function generateFood() {
   const y = Math.floor(Math.random() * gridSize) + 1;
   return { x, y };
 }
+
+//moving the snake
+function snakeMove() {
+  const head = { ...snake[0] };
+  switch (direction) {
+    case "right":
+      head.x++;
+      break;
+    case "up":
+      head.y--;
+      break;
+    case "down":
+      head.y++;
+      break;
+    case "left":
+      head.x--;
+      break;
+  }
+
+  snake.unshift(head);
+
+  if (head.x === food.x && head.y === food.y) {
+    food = generateFood();
+    increaseSpeed();
+    clearInterval(gameInterval);
+    gameInterval = setInterval(() => {
+      snakeMove();
+      checkCollision();
+      draw();
+    }, gameSpeedDelay);
+  } else {
+    snake.pop();
+  }
+}
