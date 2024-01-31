@@ -15,3 +15,19 @@ let gameInterval;
 let gameSpeedDelay = 500;
 let gameStarted = false;
 
+//draw game map, snake, food
+function draw() {
+  board.innerHTML = "";
+  drawSnake();
+  drawFood();
+  updateScore();
+}
+
+//draw snake
+function drawSnake() {
+  snake.forEach((segment) => {
+    const snakeElement = createGameElement("div", "snake");
+    setPosition(snakeElement, segment);
+    board.appendChild(snakeElement);
+  });
+}
